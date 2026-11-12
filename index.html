@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>БМ — прайс для партнёров</title>
+  <meta name="description" content="Закрытый прайс бара БМ для партнёров: выберите количество и скачайте заказ в Excel.">
+  <meta name="theme-color" content="#1f4d3a">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ ЭКРАН 1: ВХОД ============ -->
+  <section class="login" id="loginView">
+    <form class="login-card" id="loginForm" novalidate>
+      <p class="brand">БМ · Local Beer</p>
+      <h1>Прайс для партнёров</h1>
+      <p class="lead">Войдите, отметьте количество нужных позиций и скачайте заказ в Excel.</p>
+
+      <div class="field">
+        <label for="loginInput">Логин</label>
+        <input id="loginInput" name="username" type="text" autocomplete="username"
+               autocapitalize="none" spellcheck="false" required>
+      </div>
+
+      <div class="field">
+        <label for="passwordInput">Пароль</label>
+        <input id="passwordInput" name="password" type="password"
+               autocomplete="current-password" required>
+      </div>
+
+      <button class="btn btn--primary btn--block" id="loginButton" type="submit">Войти</button>
+
+      <p class="error" id="loginError" role="alert" hidden></p>
+      <p class="fineprint">Пароль выдаёт менеджер. Если он не подходит — напишите нам.</p>
+    </form>
+  </section>
+
+  <!-- ============ ЭКРАН 2: ПРАЙС ============ -->
+  <div class="catalog" id="catalogView" hidden>
+
+    <header class="topbar">
+      <div class="topbar__left">
+        <p class="topbar__label">Прайс для партнёров</p>
+        <p class="topbar__partner" id="partnerName"></p>
+      </div>
+      <div class="topbar__right">
+        <p class="topbar__date" id="priceDate"></p>
+        <button class="btn btn--ghost btn--light" id="logoutButton" type="button">Выйти</button>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <input class="toolbar__search" id="searchInput" type="search"
+             placeholder="Поиск по названию" aria-label="Поиск по названию">
+      <select class="toolbar__select" id="sectionSelect" aria-label="Раздел прайса">
+        <option value="">Все разделы</option>
+      </select>
+    </div>
+
+    <main class="price" id="priceList"></main>
+    <p class="empty" id="emptyMessage" hidden>Ничего не найдено. Измените запрос или раздел.</p>
+
+    <footer class="cart">
+      <div class="cart__stats">
+        <span><b id="statPositions">0</b> поз.</span>
+        <span><b id="statPacks">0</b> упак.</span>
+        <span><b id="statPieces">0</b> шт.</span>
+      </div>
+      <div class="cart__total">
+        <span>Итого</span>
+        <b id="statTotal">0,00 ₽</b>
+      </div>
+      <div class="cart__actions">
+        <button class="btn btn--ghost" id="clearButton" type="button">Очистить</button>
+        <button class="btn btn--primary" id="excelButton" type="button" disabled>Скачать Excel</button>
+      </div>
+    </footer>
+
+  </div>
+
+  <noscript>
+    <p class="noscript">Для работы прайса нужен включённый JavaScript в браузере.</p>
+  </noscript>
+
+  <!-- Библиотека для сборки Excel, лежит локально в папке vendor -->
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
